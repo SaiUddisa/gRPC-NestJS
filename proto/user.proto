@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+  rpc getuserInfo (GetUserInfoRequest) returns (UserResponse);
+  rpc createUser (CreateUserRequest) returns (UserResponse);
+  rpc updateUser (UpdateUserRequest) returns (UserResponse);
+  rpc getAllUsers (Empty) returns (AllUserResponse);
+}
+
+message GetUserInfoRequest {
+  int32 id = 1;
+  string showEmail = 2;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+}
+
+message UpdateUserRequest {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message UserResponse {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message AllUserResponse{
+  string status =1;
+  repeated UserResponse data = 2;
+}
+
+message Empty{}
