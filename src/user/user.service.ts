@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserDTO } from 'src/dto/user.dto';
 import { Prisma, PrismaClient } from 'generated/prisma';
-import { MetadataScanner } from '@nestjs/core';
+import { Observable } from 'rxjs/internal/Observable';
 
 const prisma = new PrismaClient();
 @Injectable()
@@ -112,5 +112,17 @@ export class UserService {
  let sta = "success";
     return { status: sta, data: users };
 
+  }
+
+   
+  async getUsersViaStream  () {
+  let users = await prisma.users.findMany({
+    select:{
+      name:true,
+      email:true,
+      id:true,
+    }
+  });
+  return users;
   }
 }

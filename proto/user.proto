@@ -7,6 +7,7 @@ service UserService {
   rpc createUser (CreateUserRequest) returns (UserResponse);
   rpc updateUser (UpdateUserRequest) returns (UserResponse);
   rpc getAllUsers (Empty) returns (AllUserResponse);
+  rpc getUsersViaStream(Empty) returns (stream UserResponse);
 }
 
 message GetUserInfoRequest {
